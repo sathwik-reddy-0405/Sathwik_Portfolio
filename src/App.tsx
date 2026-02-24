@@ -60,7 +60,7 @@ function App() {
   }, [started]);
 
   return (
-    <div className="bg-white min-h-screen text-black selection:bg-black selection:text-white relative">
+    <div className="bg-white min-h-screen text-black selection:bg-black selection:text-white relative overflow-x-hidden">
       <CustomCursor isIntro={!started} />
 
       <AnimatePresence mode="wait">

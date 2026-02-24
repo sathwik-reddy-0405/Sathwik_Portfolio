@@ -36,7 +36,7 @@ const Hero = () => {
                     "Aspiring Mechanical Engineer, fueled by a passion for motorsports and precision systems."
                 </p>
 
-                <motion.div className="flex justify-center gap-6">
+                <motion.div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-4 sm:mt-0">
                     <button
                         onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                         className="px-8 py-3 bg-black text-white hover:bg-black/80 rounded-none border border-black transition-all"

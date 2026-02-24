@@ -82,10 +82,10 @@ const ProjectCard = ({ project, i, progress, range, targetScale, openModal }: { 
     const scale = useTransform(progress, range, [1, targetScale]);
 
     return (
-        <div ref={container} className="h-screen flex items-center justify-center sticky top-0 px-4 group/card">
+        <div ref={container} className="h-[100dvh] md:h-screen flex items-center justify-center sticky top-0 px-2 sm:px-4 group/card py-10 md:py-0">
             <motion.div
                 style={{ scale, top: `calc(5vh + ${i * 30}px)` }}
-                className="relative flex flex-col w-full max-w-5xl h-auto md:h-auto min-h-[60vh] rounded-none overflow-hidden bg-white border border-black origin-top shadow-[15px_15px_0px_rgba(0,0,0,0.1)] group-hover/card:shadow-[15px_15px_0px_rgba(0,0,0,1)] transition-all duration-500"
+                className="relative flex flex-col w-full max-w-5xl max-h-[85vh] md:max-h-none h-auto md:h-auto min-h-[60vh] rounded-none overflow-y-auto md:overflow-hidden bg-white border border-black origin-top shadow-[15px_15px_0px_rgba(0,0,0,0.1)] group-hover/card:shadow-[15px_15px_0px_rgba(0,0,0,1)] transition-all duration-500 hide-scrollbar"
             >
                 {/* Background Decor Blueprint */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none z-0" />
@@ -97,21 +97,21 @@ const ProjectCard = ({ project, i, progress, range, targetScale, openModal }: { 
                 <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-transparent group-hover/card:border-black transition-colors duration-500 z-20 pointer-events-none" />
                 <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-transparent group-hover/card:border-black transition-colors duration-500 z-20 pointer-events-none" />
 
-                <div className="relative z-10 h-full flex flex-col md:flex-row p-6 md:p-10 gap-6 md:gap-12">
+                <div className="relative z-10 h-full flex flex-col md:flex-row p-4 sm:p-6 md:p-10 gap-4 sm:gap-6 md:gap-12">
                     {/* Content Section */}
-                    <div className="flex flex-col justify-center flex-1 space-y-4 md:space-y-6">
+                    <div className="flex flex-col justify-center flex-1 space-y-3 sm:space-y-4 md:space-y-6">
                         <div>
-                            <span className="inline-block px-3 py-1 border border-black/10 text-[10px] font-mono text-black/40 mb-4 bg-black/5 uppercase tracking-[0.2em]">
+                            <span className="inline-block px-2 sm:px-3 py-1 border border-black/10 text-[8px] sm:text-[10px] font-mono text-black/40 mb-2 sm:mb-4 bg-black/5 uppercase tracking-[0.2em]">
                                 {project.category}
                             </span>
-                            <h2 className="text-3xl md:text-5xl font-bold text-black mb-2 leading-tight font-serif">{project.title}</h2>
+                            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-black mb-1 sm:mb-2 leading-tight font-serif">{project.title}</h2>
                         </div>
 
-                        <p className="text-black/60 text-sm md:text-base leading-relaxed font-light italic">
+                        <p className="text-black/60 text-xs sm:text-sm md:text-base leading-relaxed font-light italic">
                             {project.description}
                         </p>
 
-                        <div className="space-y-4 border-l border-black/10 pl-6 font-mono text-xs uppercase tracking-wider">
+                        <div className="space-y-2 sm:space-y-4 border-l border-black/10 pl-4 sm:pl-6 font-mono text-[10px] md:text-xs uppercase tracking-wider hidden sm:block">
                             {project.details?.map((detail: string, idx: number) => (
                                 <div key={idx} className="text-black/40 flex items-center gap-2">
                                     <span className="w-1 h-1 bg-black" />
@@ -120,9 +120,9 @@ const ProjectCard = ({ project, i, progress, range, targetScale, openModal }: { 
                             ))}
                         </div>
 
-                        <div className="flex flex-wrap gap-2 pt-4">
+                        <div className="flex flex-wrap gap-2 pt-2 sm:pt-4">
                             {project.tech?.map((t: string) => (
-                                <span key={t} className="px-3 py-1 text-[10px] font-mono border border-black/20 hover:border-black hover:bg-black hover:text-white transition-colors cursor-default">
+                                <span key={t} className="px-2 sm:px-3 py-1 text-[8px] sm:text-[10px] font-mono border border-black/20 hover:border-black hover:bg-black hover:text-white transition-colors cursor-default">
                                     {t}
                                 </span>
                             ))}
@@ -134,7 +134,7 @@ const ProjectCard = ({ project, i, progress, range, targetScale, openModal }: { 
                         onClick={openModal}
                         whileHover={{ scale: 0.98 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex-1 min-h-[300px] md:min-h-0 border border-black/10 p-2 relative overflow-hidden group/img bg-gray-50 cursor-crosshair hover:border-black transition-colors"
+                        className="flex-1 min-h-[200px] sm:min-h-[300px] md:min-h-0 border border-black/10 p-2 relative overflow-hidden group/img bg-gray-50 cursor-crosshair hover:border-black transition-colors"
                     >
                         {/* Hover hint */}
                         <div className="absolute inset-0 z-30 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
@@ -191,10 +191,10 @@ const Projects = () => {
     }
 
     return (
-        <section id="projects" ref={container} className="relative mt-32 mb-32 bg-white">
+        <section id="projects" ref={container} className="relative mt-20 sm:mt-32 mb-20 sm:mb-32 bg-white">
             <div className="h-[20vh] flex flex-col items-center justify-center mb-10 gap-2">
-                <span className="text-xs font-mono text-black/40 uppercase tracking-[0.5em]">Inventory of work</span>
-                <h2 className="text-5xl md:text-7xl font-bold text-black font-serif">
+                <span className="text-[10px] sm:text-xs font-mono text-black/40 uppercase tracking-[0.3em] sm:tracking-[0.5em] text-center">Inventory of work</span>
+                <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold text-black font-serif text-center">
                     Projects
                 </h2>
             </div>
@@ -219,15 +219,15 @@ const Projects = () => {
                         {/* Close Button Component */}
                         <motion.button
                             onClick={() => setActiveProject(null)}
-                            className="fixed top-8 right-8 z-[1010] p-4 bg-black text-white hover:bg-red-600 transition-colors border border-black shadow-[4px_4px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000]"
+                            className="fixed top-4 right-4 sm:top-8 sm:right-8 z-[1010] p-2 sm:p-4 bg-black text-white hover:bg-red-600 transition-colors border border-black shadow-[2px_2px_0px_#000] sm:shadow-[4px_4px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] sm:hover:shadow-[2px_2px_0px_#000]"
                         >
-                            <span className="font-mono text-sm uppercase tracking-widest font-bold">Close X</span>
+                            <span className="font-mono text-xs sm:text-sm uppercase tracking-widest font-bold">Close X</span>
                         </motion.button>
 
                         {/* Top Hero Image Section using Shared Layout */}
-                        <div className="w-full h-[60vh] md:h-[70vh] relative bg-gray-100 p-4 border-b border-black">
+                        <div className="w-full h-[40vh] sm:h-[50vh] md:h-[70vh] relative bg-gray-100 p-2 sm:p-4 border-b border-black">
                             {/* Blueprint grid background */}
-                            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808020_1px,transparent_1px),linear-gradient(to_bottom,#80808020_1px,transparent_1px)] bg-[size:40px_40px] z-0 pointer-events-none" />
+                            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808020_1px,transparent_1px),linear-gradient(to_bottom,#80808020_1px,transparent_1px)] bg-[size:20px_20px] sm:bg-[size:40px_40px] z-0 pointer-events-none" />
 
                             <motion.div layoutId={`project-image-container-${activeIndex}`} className="w-full h-full relative z-10 border border-black shadow-lg overflow-hidden bg-white line-clamp-none">
                                 <motion.img
@@ -237,13 +237,13 @@ const Projects = () => {
                                     className="w-full h-full object-cover"
                                 />
                                 {/* Soft inner gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
-                                <div className="absolute bottom-8 left-8 md:bottom-16 md:left-16 text-white text-left z-20">
-                                    <span className="inline-block px-4 py-2 bg-red-600 border border-black font-mono text-xs uppercase tracking-widest mb-4">
+                                <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 md:bottom-16 md:left-16 text-white text-left z-20">
+                                    <span className="inline-block px-2 sm:px-4 py-1 sm:py-2 bg-red-600 border border-black font-mono text-[8px] sm:text-xs uppercase tracking-widest mb-2 sm:mb-4">
                                         {activeProject.category}
                                     </span>
-                                    <h1 className="text-5xl md:text-8xl font-bold font-serif shadow-black drop-shadow-lg break-words max-w-[90%]">
+                                    <h1 className="text-3xl sm:text-5xl md:text-8xl font-bold font-serif shadow-black drop-shadow-lg break-words max-w-[95%] sm:max-w-[90%]">
                                         {activeProject.title}
                                     </h1>
                                 </div>
@@ -251,12 +251,12 @@ const Projects = () => {
                         </div>
 
                         {/* Detailed Content Section */}
-                        <div className="max-w-7xl mx-auto w-full px-6 py-20">
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-16 relative items-start">
+                        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-20">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-16 relative items-start">
                                 {/* Left Col - Heavy Description */}
-                                <div className="md:col-span-2 space-y-8">
-                                    <h3 className="text-2xl font-mono uppercase tracking-widest border-b-2 border-black pb-4">Project Overview</h3>
-                                    <div className="text-xl leading-loose font-serif text-black/80 space-y-6">
+                                <div className="md:col-span-2 space-y-6 sm:space-y-8">
+                                    <h3 className="text-xl sm:text-2xl font-mono uppercase tracking-widest border-b-2 border-black pb-4">Project Overview</h3>
+                                    <div className="text-lg sm:text-xl leading-relaxed sm:leading-loose font-serif text-black/80 space-y-4 sm:space-y-6">
                                         {activeProject.longDescription ? (
                                             activeProject.longDescription.map((paragraph, _idx) => (
                                                 <p key={_idx}>{paragraph}</p>

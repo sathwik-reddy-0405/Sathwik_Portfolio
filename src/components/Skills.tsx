@@ -11,11 +11,12 @@ const skills = [
     { name: 'Manufacturing', angle: 308.4 },
 ];
 
-const SkillNode = ({ skill, index, scrollYProgress, mousePos }: {
+const SkillNode = ({ skill, index, scrollYProgress, mousePos, isMobile }: {
     skill: typeof skills[0];
     index: number;
     scrollYProgress: MotionValue<number>;
     mousePos: { x: number; y: number };
+    isMobile: boolean;
 }) => {
     const nodeRef = useRef<HTMLDivElement>(null);
 
@@ -23,7 +24,8 @@ const SkillNode = ({ skill, index, scrollYProgress, mousePos }: {
     const startThreshold = 0.05 + (index * 0.02);
     const endThreshold = 0.5;
 
-    const currentRadius = useTransform(scrollYProgress, [startThreshold, endThreshold], [0, 280]);
+    const maxRadius = isMobile ? 120 : 280;
+    const currentRadius = useTransform(scrollYProgress, [startThreshold, endThreshold], [0, maxRadius]);
     const rotationOffset = useTransform(scrollYProgress, [0, 0.5], [0, 360]);
     const opacity = useTransform(scrollYProgress, [startThreshold, startThreshold + 0.1], [0, 1]);
     const scale = useTransform(scrollYProgress, [startThreshold, startThreshold + 0.15], [0.5, 1]);
@@ -151,6 +153,14 @@ const MechanicalGear = ({ progress }: { progress: MotionValue<number> }) => {
 const Skills = () => {
     const containerRef = useRef<HTMLElement>(null);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -191,6 +201,7 @@ const Skills = () => {
                             index={i}
                             scrollYProgress={scrollYProgress}
                             mousePos={mousePos}
+                            isMobile={isMobile}
                         />
                     ))}
                 </div>
