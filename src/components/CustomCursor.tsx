@@ -99,7 +99,7 @@ const CustomCursor = ({ isIntro = false }: CustomCursorProps) => {
 
     return (
         <motion.div
-            className="fixed top-0 left-0 w-12 h-12 pointer-events-none z-[9999] flex items-center justify-center"
+            className="fixed top-0 left-0 w-12 h-12 pointer-events-none z-[9999] hidden md:flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: isVisible ? 1 : 0 }}
             transition={{ opacity: { duration: 0.5, ease: "easeInOut" } }}

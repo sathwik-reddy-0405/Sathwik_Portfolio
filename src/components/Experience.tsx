@@ -29,8 +29,8 @@ const Experience = () => {
 
             <div className="max-w-4xl mx-auto relative z-10">
                 <div className="flex flex-col items-center mb-20">
-                    <span className="text-red-500 font-mono tracking-[0.4em] text-xs mb-4 uppercase">Track Record</span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-center text-black font-serif italic pr-2">
+                    <span className="text-red-500 font-mono tracking-[0.2em] sm:tracking-[0.4em] text-[10px] sm:text-xs mb-4 uppercase">Track Record</span>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-black font-serif italic pr-1 sm:pr-2">
                         Engineering<span className="text-red-600">.</span>Journey
                     </h2>
                 </div>
@@ -77,9 +77,9 @@ const Experience = () => {
                                 <div className="absolute top-8 left-0 w-12 md:w-20 h-[1px] bg-gradient-to-r from-red-600/50 to-transparent origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
 
                                 {/* Content Card */}
-                                <div className="p-8 border border-black/10 group-hover:border-red-600/30 transition-all duration-300 bg-white shadow-[8px_8px_0px_rgba(0,0,0,0.05)] group-hover:shadow-[8px_8px_0px_rgba(220,38,38,0.2)] group-hover:-translate-y-1 group-hover:-translate-x-1">
-                                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 border-b border-black/5 pb-4">
-                                        <h3 className="text-2xl font-bold text-black font-serif tracking-tight">{exp.title}</h3>
+                                <div className="p-5 sm:p-8 border border-black/10 group-hover:border-red-600/30 transition-all duration-300 bg-white shadow-[4px_4px_0px_rgba(0,0,0,0.05)] sm:shadow-[8px_8px_0px_rgba(0,0,0,0.05)] group-hover:shadow-[4px_4px_0px_rgba(220,38,38,0.2)] sm:group-hover:shadow-[8px_8px_0px_rgba(220,38,38,0.2)] group-hover:-translate-y-1 group-hover:-translate-x-1">
+                                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 sm:mb-6 border-b border-black/5 pb-4">
+                                        <h3 className="text-xl sm:text-2xl font-bold text-black font-serif tracking-tight">{exp.title}</h3>
                                         <span className="inline-block px-3 py-1 bg-gray-100 group-hover:bg-red-600 group-hover:text-white transition-colors text-[10px] font-mono tracking-[0.2em] mt-3 md:mt-0 uppercase">
                                             {exp.date}
                                         </span>
@@ -90,7 +90,7 @@ const Experience = () => {
                                             {exp.company}
                                         </div>
                                     </div>
-                                    <p className="text-black/80 leading-loose font-serif text-lg">
+                                    <p className="text-black/80 leading-relaxed sm:leading-loose font-serif text-base sm:text-lg">
                                         {exp.description}
                                     </p>
                                 </div>

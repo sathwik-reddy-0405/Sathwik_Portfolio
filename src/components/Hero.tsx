@@ -27,8 +27,8 @@ const Hero = () => {
                 <h2 className="text-black/60 font-medium tracking-[0.3em] mb-4 uppercase text-xs md:text-sm">
                     Mechanical Engineering | Motorsports Enthusiast
                 </h2>
-                <h1 className="text-5xl md:text-8xl font-bold mb-6 drop-shadow-2xl overflow-hidden tracking-tighter">
-                    <motion.span className="inline-block text-black overflow-hidden whitespace-nowrap border-r border-black pr-2">
+                <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 drop-shadow-2xl overflow-hidden tracking-tighter">
+                    <motion.span className="inline-block text-black overflow-hidden whitespace-normal sm:whitespace-nowrap border-r border-black pr-1 sm:pr-2">
                         Sathwik Reddy.G
                     </motion.span>
                 </h1>

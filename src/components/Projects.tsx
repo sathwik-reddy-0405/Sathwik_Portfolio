@@ -104,7 +104,7 @@ const ProjectCard = ({ project, i, progress, range, targetScale, openModal }: { 
                             <span className="inline-block px-2 sm:px-3 py-1 border border-black/10 text-[8px] sm:text-[10px] font-mono text-black/40 mb-2 sm:mb-4 bg-black/5 uppercase tracking-[0.2em]">
                                 {project.category}
                             </span>
-                            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-black mb-1 sm:mb-2 leading-tight font-serif">{project.title}</h2>
+                            <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-black mb-1 sm:mb-2 leading-tight font-serif">{project.title}</h2>
                         </div>
 
                         <p className="text-black/60 text-xs sm:text-sm md:text-base leading-relaxed font-light italic">
@@ -134,7 +134,7 @@ const ProjectCard = ({ project, i, progress, range, targetScale, openModal }: { 
                         onClick={openModal}
                         whileHover={{ scale: 0.98 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex-1 min-h-[200px] sm:min-h-[300px] md:min-h-0 border border-black/10 p-2 relative overflow-hidden group/img bg-gray-50 cursor-crosshair hover:border-black transition-colors"
+                        className="flex-1 min-h-[160px] sm:min-h-[250px] md:min-h-0 border border-black/10 p-2 relative overflow-hidden group/img bg-gray-50 cursor-crosshair hover:border-black transition-colors"
                     >
                         {/* Hover hint */}
                         <div className="absolute inset-0 z-30 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
@@ -193,8 +193,8 @@ const Projects = () => {
     return (
         <section id="projects" ref={container} className="relative mt-20 sm:mt-32 mb-20 sm:mb-32 bg-white">
             <div className="h-[20vh] flex flex-col items-center justify-center mb-10 gap-2">
-                <span className="text-[10px] sm:text-xs font-mono text-black/40 uppercase tracking-[0.3em] sm:tracking-[0.5em] text-center">Inventory of work</span>
-                <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold text-black font-serif text-center">
+                <span className="text-[10px] sm:text-xs font-mono text-black/40 uppercase tracking-[0.3em] sm:tracking-[0.5em] text-center px-4">Inventory of work</span>
+                <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold text-black font-serif text-center px-4">
                     Projects
                 </h2>
             </div>
@@ -225,7 +225,7 @@ const Projects = () => {
                         </motion.button>
 
                         {/* Top Hero Image Section using Shared Layout */}
-                        <div className="w-full h-[40vh] sm:h-[50vh] md:h-[70vh] relative bg-gray-100 p-2 sm:p-4 border-b border-black">
+                        <div className="w-full h-[30vh] sm:h-[40vh] md:h-[60vh] lg:h-[70vh] relative bg-gray-100 p-2 sm:p-4 border-b border-black">
                             {/* Blueprint grid background */}
                             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808020_1px,transparent_1px),linear-gradient(to_bottom,#80808020_1px,transparent_1px)] bg-[size:20px_20px] sm:bg-[size:40px_40px] z-0 pointer-events-none" />
 
@@ -243,7 +243,7 @@ const Projects = () => {
                                     <span className="inline-block px-2 sm:px-4 py-1 sm:py-2 bg-red-600 border border-black font-mono text-[8px] sm:text-xs uppercase tracking-widest mb-2 sm:mb-4">
                                         {activeProject.category}
                                     </span>
-                                    <h1 className="text-3xl sm:text-5xl md:text-8xl font-bold font-serif shadow-black drop-shadow-lg break-words max-w-[95%] sm:max-w-[90%]">
+                                    <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-8xl font-bold font-serif shadow-black drop-shadow-lg break-words max-w-[95%] sm:max-w-[90%] leading-tight">
                                         {activeProject.title}
                                     </h1>
                                 </div>
@@ -255,8 +255,8 @@ const Projects = () => {
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-16 relative items-start">
                                 {/* Left Col - Heavy Description */}
                                 <div className="md:col-span-2 space-y-6 sm:space-y-8">
-                                    <h3 className="text-xl sm:text-2xl font-mono uppercase tracking-widest border-b-2 border-black pb-4">Project Overview</h3>
-                                    <div className="text-lg sm:text-xl leading-relaxed sm:leading-loose font-serif text-black/80 space-y-4 sm:space-y-6">
+                                    <h3 className="text-lg sm:text-xl md:text-2xl font-mono uppercase tracking-widest border-b-2 border-black pb-4">Project Overview</h3>
+                                    <div className="text-base sm:text-lg md:text-xl leading-relaxed sm:leading-loose font-serif text-black/80 space-y-4 sm:space-y-6">
                                         {activeProject.longDescription ? (
                                             activeProject.longDescription.map((paragraph, _idx) => (
                                                 <p key={_idx}>{paragraph}</p>

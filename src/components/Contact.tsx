@@ -24,14 +24,14 @@ const Contact = () => {
     return (
         <section id="contact" className="py-20 px-6 relative">
             <div className="max-w-4xl mx-auto">
-                <div className="flex flex-col items-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-center text-black font-serif">
+                <div className="flex flex-col items-center mb-10 sm:mb-16">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-black font-serif">
                         Project Inquiry
                     </h2>
                 </div>
 
-                <div className="bg-white border border-black/10 p-10 md:p-16 rounded-none relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-4 font-mono text-[8px] text-black/20 uppercase tracking-widest">
+                <div className="bg-white border border-black/10 p-6 sm:p-10 md:p-16 rounded-none relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-4 font-mono text-[8px] text-black/20 uppercase tracking-widest hidden sm:block">
                         FORM.REF_02.A
                     </div>
                     <form onSubmit={handleSubmit} className="space-y-8">
