@@ -29,19 +29,19 @@ const Navbar = () => {
             className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled ? 'py-4' : 'py-8'
                 }`}
         >
-            <div className="container mx-auto px-6 flex items-center justify-between">
+            <div className="container mx-auto px-6 flex items-center justify-between md:translate-x-8">
                 {/* Logo */}
                 <motion.a
                     href="#home"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="text-2xl font-bold tracking-tighter text-black group"
+                    className="text-4xl font-bold tracking-tighter text-black group"
                 >
                     SATHWIK<span className="text-black group-hover:opacity-50">.</span>
                 </motion.a>
 
                 {/* Desktop Links */}
-                <div className="hidden md:flex items-center gap-8 px-8 py-3 rounded-full bg-white/40 backdrop-blur-md border border-black/10 shadow-sm">
+                <div className="hidden md:flex items-center gap-12 px-10 py-4 rounded-full bg-white/40 backdrop-blur-md border border-black/10 shadow-sm scale-110 origin-right transition-transform">
                     {navLinks.map((link, i) => (
                         <motion.a
                             key={link.name}
@@ -49,7 +49,7 @@ const Navbar = () => {
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.1 }}
-                            className="text-sm font-medium text-gray-600 hover:text-black transition-colors relative group"
+                            className="text-lg font-medium text-gray-600 hover:text-black transition-colors relative group"
                         >
                             {link.name}
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full" />

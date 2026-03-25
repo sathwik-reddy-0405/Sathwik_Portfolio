@@ -74,8 +74,11 @@ function App() {
 
       {started && <Navbar />}
 
-      <div className="relative z-10 px-4 md:px-8 max-w-[1600px] mx-auto">
+      <div className="relative z-10 w-full">
         <section id="home"><Hero /></section>
+      </div>
+
+      <div className="relative z-10 px-4 md:px-8 max-w-[1600px] mx-auto">
         <section id="about"><About /></section>
         <section id="projects"><Projects /></section>
         <section id="skills"><Skills /></section>
