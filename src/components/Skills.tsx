@@ -24,7 +24,7 @@ const SkillNode = ({ skill, index, scrollYProgress, mousePos, isMobile }: {
     const startThreshold = 0.05 + (index * 0.02);
     const endThreshold = 0.5;
 
-    const maxRadius = isMobile ? 120 : 280;
+    const maxRadius = isMobile ? 85 : 280;
     const currentRadius = useTransform(scrollYProgress, [startThreshold, endThreshold], [0, maxRadius]);
     const rotationOffset = useTransform(scrollYProgress, [0, 0.5], [0, 360]);
     const opacity = useTransform(scrollYProgress, [startThreshold, startThreshold + 0.1], [0, 1]);
@@ -102,7 +102,7 @@ const SkillNode = ({ skill, index, scrollYProgress, mousePos, isMobile }: {
                     border: "3px solid rgba(0,0,0,0.9)", // Thicker and stronger border opacity perception
                     boxShadow: "0 8px 24px rgba(0,0,0,0.08)"
                 }}
-                className="group relative bg-white backdrop-blur-3xl px-9 py-5 rounded-[20px] transition-all duration-500 flex items-center justify-center overflow-hidden cursor-pointer"
+                className="group relative bg-white backdrop-blur-3xl px-4 py-2 sm:px-9 sm:py-5 rounded-2xl sm:rounded-[20px] transition-all duration-500 flex items-center justify-center overflow-hidden cursor-pointer"
             >
                 {/* Advanced Hover Fill and Micro-animations */}
                 <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -133,15 +133,15 @@ const MechanicalGear = ({ progress }: { progress: MotionValue<number> }) => {
                 <motion.img
                     src="/gear.png"
                     alt="Mechanical Core"
-                    className="w-60 h-60 md:w-[320px] md:h-[320px] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] pointer-events-none opacity-100"
+                    className="w-40 h-40 sm:w-60 sm:h-60 md:w-[320px] md:h-[320px] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] pointer-events-none opacity-100"
                 />
 
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border border-white/40 bg-white/20 backdrop-blur-2xl flex flex-col items-center justify-center shadow-2xl">
-                        <h2 className="text-sm md:text-base font-medium tracking-[0.5em] text-black font-dot uppercase leading-none mb-1">
+                    <div className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full border border-white/40 bg-white/20 backdrop-blur-2xl flex flex-col items-center justify-center shadow-2xl">
+                        <h2 className="text-[10px] sm:text-sm md:text-base font-medium tracking-[0.2em] sm:tracking-[0.5em] text-black font-dot uppercase leading-none mb-1">
                             Skills
                         </h2>
-                        <div className="w-12 h-[1px] bg-black/10 mt-2" />
+                        <div className="w-8 sm:w-12 h-[1px] bg-black/10 mt-1 sm:mt-2" />
                     </div>
                 </div>
             </motion.div>
