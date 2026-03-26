@@ -41,7 +41,7 @@ const Navbar = () => {
                 </motion.a>
 
                 {/* Desktop Links */}
-                <div className="hidden md:flex items-center gap-12 px-10 py-4 rounded-full bg-white/40 backdrop-blur-md border border-black/10 shadow-sm scale-110 origin-right transition-transform">
+                <div className="hidden md:flex items-center gap-12 px-10 py-4 rounded-full bg-white/40 backdrop-blur-md border border-black/10 shadow-sm scale-[0.8] origin-right transition-transform">
                     {navLinks.map((link, i) => (
                         <motion.a
                             key={link.name}
@@ -49,10 +49,22 @@ const Navbar = () => {
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.1 }}
-                            className="text-lg font-medium text-gray-600 hover:text-black transition-colors relative group"
+                            className="relative group flex items-center justify-center cursor-pointer overflow-hidden rounded-full px-5 h-10"
                         >
-                            {link.name}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full" />
+                            {/* Invisible Placeholder for proper dynamic width */}
+                            <span className="invisible text-lg font-medium whitespace-nowrap">
+                                {link.name}
+                            </span>
+                            
+                            {/* Front Face */}
+                            <div className="absolute inset-0 flex items-center justify-center text-lg font-medium text-gray-600 transition-transform duration-500 ease-in-out group-hover:[transform:translateY(-100%)_rotateX(90deg)]">
+                                {link.name}
+                            </div>
+                            
+                            {/* Bottom Face */}
+                            <div className="absolute inset-0 flex items-center justify-center text-lg font-medium text-white bg-black rounded-full whitespace-nowrap transition-transform duration-500 ease-in-out [transform:translateY(100%)_rotateX(-90deg)] group-hover:[transform:translateY(0)_rotateX(0deg)]">
+                                {link.name}
+                            </div>
                         </motion.a>
                     ))}
                 </div>

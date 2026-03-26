@@ -14,6 +14,7 @@ import CustomCursor from './components/CustomCursor';
 import SketchBackground from './components/SketchBackground';
 import FullscreenIntro from './components/FullscreenIntro';
 import MechanicalBackground from './components/MechanicalBackground';
+import KineticGrid from './components/KineticGrid';
 
 function App() {
   const [started, setStarted] = useState(false);
@@ -79,6 +80,7 @@ function App() {
       </div>
 
       <div className="relative z-10 px-4 md:px-8 max-w-[1600px] mx-auto">
+        <KineticGrid />
         <section id="about"><About /></section>
         <section id="projects"><Projects /></section>
         <section id="skills"><Skills /></section>
