@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import Hero from './components/Hero';
 import About from './components/About';
@@ -15,6 +15,21 @@ import SketchBackground from './components/SketchBackground';
 import FullscreenIntro from './components/FullscreenIntro';
 import MechanicalBackground from './components/MechanicalBackground';
 import KineticGrid from './components/KineticGrid';
+
+const ScrollSection = ({ children, id }: { children: React.ReactNode, id: string }) => {
+  return (
+    <motion.section
+      id={id}
+      initial={{ opacity: 0, y: 80, filter: 'blur(10px)' }}
+      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+      className="w-full will-change-transform"
+    >
+      {children}
+    </motion.section>
+  );
+};
 
 function App() {
   const [started, setStarted] = useState(false);
@@ -76,16 +91,16 @@ function App() {
       {started && <Navbar />}
 
       <div className="relative z-10 w-full">
-        <section id="home"><Hero /></section>
+        <ScrollSection id="home"><Hero /></ScrollSection>
       </div>
 
       <div className="relative z-10 px-4 md:px-8 max-w-[1600px] mx-auto">
         <KineticGrid />
-        <section id="about"><About /></section>
-        <section id="projects"><Projects /></section>
-        <section id="skills"><Skills /></section>
-        <section id="experience"><Experience /></section>
-        <section id="contact"><Contact /></section>
+        <ScrollSection id="about"><About /></ScrollSection>
+        <ScrollSection id="projects"><Projects /></ScrollSection>
+        <ScrollSection id="skills"><Skills /></ScrollSection>
+        <ScrollSection id="experience"><Experience /></ScrollSection>
+        <ScrollSection id="contact"><Contact /></ScrollSection>
         <Footer />
         <MechanicalBackground />
       </div>

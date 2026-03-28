@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform, MotionValue, AnimatePresence } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 
 const projects = [
     {
@@ -74,108 +74,33 @@ const projects = [
             "/wheeloader/WhatsApp Image 2026-02-24 at 07.33.42.jpeg",
             "/wheeloader/WhatsApp Image 2026-02-24 at 07.34.32.jpeg"
         ]
+    },
+    {
+        title: "Moto Student India",
+        category: "Upcoming / Now Working",
+        description: "Currently engineering and developing a high-performance motorcycle prototype. Focusing on structural integrity, vehicle dynamics, and advanced simulation for the upcoming competition.",
+        details: [
+            "Research & Conceptualization",
+            "Chassis Architecture",
+            "Dynamics Simulation"
+        ],
+        tech: ["SolidWorks", "ANSYS", "MATLAB"],
+        link: "#",
+        color: "from-black to-gray-500",
+        image: "/motostudent.jfif",
+        isUpcoming: true,
+        gallery: [],
+        longDescription: [
+            "This project is currently a work-in-progress for the Moto Student India competition.",
+            "I am actively involved in the foundational engineering phase of the motorcycle, which includes establishing baseline geometry, conducting preliminary kinematic analyses of the suspension systems, and ensuring strict adherence to the competition's rulebook.",
+            "Our current manufacturing milestone involves refining the chassis design to minimize unsprung mass while maximizing structural rigidity and mechanical grip.",
+            "Detailed CAD renderings, simulation results, and track-testing telemetry will be published here as development progresses."
+        ]
     }
 ];
 
-const ProjectCard = ({ project, i, progress, range, targetScale, openModal }: { project: typeof projects[0], i: number, progress: MotionValue<number>, range: number[], targetScale: number, openModal: () => void }) => {
-    const container = useRef(null);
-    const scale = useTransform(progress, range, [1, targetScale]);
-
-    return (
-        <div ref={container} className="h-[100dvh] md:h-screen flex items-center justify-center sticky top-0 px-2 sm:px-4 group/card py-10 md:py-0">
-            <motion.div
-                style={{ scale, top: `calc(5vh + ${i * 30}px)` }}
-                className="relative flex flex-col w-full max-w-5xl max-h-[85vh] md:max-h-none h-auto md:h-auto min-h-[60vh] rounded-none overflow-y-auto md:overflow-hidden bg-white border border-black origin-top shadow-[15px_15px_0px_rgba(0,0,0,0.1)] group-hover/card:shadow-[15px_15px_0px_rgba(0,0,0,1)] transition-all duration-500 hide-scrollbar"
-            >
-                {/* Background Decor Blueprint */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none z-0" />
-                <div className="absolute inset-0 bg-white/95" />
-
-                {/* Decorative Crosshairs / Accents */}
-                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-transparent group-hover/card:border-black transition-colors duration-500 z-20 pointer-events-none" />
-                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-transparent group-hover/card:border-black transition-colors duration-500 z-20 pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-transparent group-hover/card:border-black transition-colors duration-500 z-20 pointer-events-none" />
-                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-transparent group-hover/card:border-black transition-colors duration-500 z-20 pointer-events-none" />
-
-                <div className="relative z-10 h-full flex flex-col md:flex-row p-4 sm:p-6 md:p-10 gap-4 sm:gap-6 md:gap-12">
-                    {/* Content Section */}
-                    <div className="flex flex-col justify-center flex-1 space-y-3 sm:space-y-4 md:space-y-6">
-                        <div>
-                            <span className="inline-block px-2 sm:px-3 py-1 border border-black/10 text-[8px] sm:text-[10px] font-mono text-black/40 mb-2 sm:mb-4 bg-black/5 uppercase tracking-[0.2em]">
-                                {project.category}
-                            </span>
-                            <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-black mb-1 sm:mb-2 leading-tight font-serif">{project.title}</h2>
-                        </div>
-
-                        <p className="text-black/60 text-xs sm:text-sm md:text-base leading-relaxed font-light italic">
-                            {project.description}
-                        </p>
-
-                        <div className="space-y-2 sm:space-y-4 border-l border-black/10 pl-4 sm:pl-6 font-mono text-[10px] md:text-xs uppercase tracking-wider hidden sm:block">
-                            {project.details?.map((detail: string, idx: number) => (
-                                <div key={idx} className="text-black/40 flex items-center gap-2">
-                                    <span className="w-1 h-1 bg-black" />
-                                    {detail}
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className="flex flex-wrap gap-2 pt-2 sm:pt-4">
-                            {project.tech?.map((t: string) => (
-                                <span key={t} className="px-2 sm:px-3 py-1 text-[8px] sm:text-[10px] font-mono border border-black/20 hover:border-black hover:bg-black hover:text-white transition-colors cursor-default">
-                                    {t}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Visual Section (Images) - NOW CLICKABLE */}
-                    <motion.div
-                        onClick={openModal}
-                        whileHover={{ scale: 0.98 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex-1 min-h-[160px] sm:min-h-[250px] md:min-h-0 border border-black/10 p-2 relative overflow-hidden group/img bg-gray-50 cursor-crosshair hover:border-black transition-colors"
-                    >
-                        {/* Hover hint */}
-                        <div className="absolute inset-0 z-30 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
-                            <span className="px-6 py-3 bg-white text-black font-mono text-xs uppercase tracking-widest border border-black shadow-[4px_4px_0px_rgba(0,0,0,1)]">Open Database</span>
-                        </div>
-
-                        {/* Blueprint grid effect overlay */}
-                        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px] z-10 pointer-events-none" />
-
-                        <motion.div layoutId={`project-image-container-${i}`} className="w-full h-full bg-white border border-black/20 shadow-sm overflow-hidden relative">
-                            {/* Annotation info */}
-                            <div className="absolute top-2 left-2 flex gap-4 text-[8px] font-mono text-black/30 z-20">
-                                <span>SIZE: ARCH E</span>
-                                <span>REV: 02.A</span>
-                            </div>
-
-                            <div className="w-full h-full relative overflow-hidden bg-black/5">
-                                <motion.img
-                                    layoutId={`project-image-${i}`}
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="w-full h-full object-cover transition-all duration-700 group-hover/img:scale-110 group-hover/img:grayscale group-hover/img:brightness-105 group-hover/img:contrast-125 group-hover/img:mix-blend-multiply group-hover/img:opacity-70"
-                                />
-                                {/* Soft tint overlay for blueprint feel */}
-                                <div className="absolute inset-0 bg-blue-900/5 mix-blend-overlay pointer-events-none opacity-0 group-hover/img:opacity-100 transition-opacity duration-700" />
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                </div>
-            </motion.div>
-        </div>
-    )
-}
-
 const Projects = () => {
-    const container = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: container,
-        offset: ['start start', 'end end']
-    });
-
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const [activeProject, setActiveProject] = useState<typeof projects[0] | null>(null);
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -191,7 +116,7 @@ const Projects = () => {
     }
 
     return (
-        <section id="projects" ref={container} className="relative mt-20 sm:mt-32 mb-20 sm:mb-32 bg-white">
+        <section id="projects" className="relative mt-20 sm:mt-32 mb-10">
             <div className="h-[20vh] flex flex-col items-center justify-center mb-10 gap-2">
                 <span className="text-[10px] sm:text-xs font-mono text-black/40 uppercase tracking-[0.3em] sm:tracking-[0.5em] text-center px-4">Inventory of work</span>
                 <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold text-black font-serif text-center px-4">
@@ -199,11 +124,87 @@ const Projects = () => {
                 </h2>
             </div>
 
-            <div className="relative z-10">
-                {projects.map((project, i) => {
-                    const targetScale = 1 - ((projects.length - i) * 0.05);
-                    return <ProjectCard key={i} i={i} project={project} progress={scrollYProgress} range={[i * 0.25, 1]} targetScale={targetScale} openModal={() => { setActiveProject(project); setActiveIndex(i); }} />
-                })}
+            <div className="w-full max-w-[90rem] mx-auto px-4 sm:px-8">
+                <div className="flex flex-col lg:flex-row w-full h-[80vh] lg:h-[650px] gap-2 lg:gap-4">
+                    {projects.map((project, i) => {
+                        const isHovered = hoveredIndex === i;
+                        return (
+                            <motion.div
+                                key={i}
+                                className={`relative overflow-hidden rounded-3xl bg-gray-100 border border-black shadow-[8px_8px_0px_rgba(0,0,0,0.1)] hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-shadow duration-500 group flex items-end ${project.isUpcoming ? 'cursor-default' : 'cursor-crosshair'}`}
+                                animate={{
+                                    flex: hoveredIndex === null ? 1 : isHovered ? 4 : 0.5,
+                                }}
+                                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                                onMouseEnter={() => setHoveredIndex(i)}
+                                onMouseLeave={() => setHoveredIndex(null)}
+                                onClick={() => { if (!project.isUpcoming) { setActiveProject(project); setActiveIndex(i); } }}
+                            >
+                                {/* Blueprint grid background */}
+                                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none z-0" />
+                                
+                                <motion.div layoutId={`project-image-container-${i}`} className="absolute inset-0 w-full h-full rounded-3xl overflow-hidden">
+                                    <motion.img 
+                                        layoutId={`project-image-${i}`}
+                                        src={project.image} 
+                                        alt={project.title} 
+                                        className="w-full h-full object-cover transition-all duration-700 opacity-60 group-hover:opacity-100 group-hover:scale-105 group-hover:grayscale" 
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
+                                </motion.div>
+                                
+                                <div className="relative z-20 p-6 md:p-8 flex flex-col justify-end h-full w-full">
+                                    <motion.div 
+                                        animate={{ opacity: isHovered || hoveredIndex === null ? 1 : 0.5 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <span className="inline-block px-2 py-1 bg-white text-black font-mono text-[10px] uppercase tracking-widest mb-3 border border-black shadow-[2px_2px_0px_#000]">
+                                            {project.category}
+                                        </span>
+                                    </motion.div>
+
+                                    <motion.h2 
+                                        className="text-white text-3xl sm:text-4xl md:text-5xl font-serif font-bold whitespace-nowrap tracking-tight"
+                                        animate={{
+                                            rotate: 0,
+                                        }}
+                                    >
+                                        {project.title}
+                                    </motion.h2>
+
+                                    <div className="overflow-hidden">
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                                            animate={{ 
+                                                height: isHovered ? 'auto' : 0, 
+                                                opacity: isHovered ? 1 : 0,
+                                                marginTop: isHovered ? 16 : 0
+                                            }}
+                                            transition={{ duration: 0.4, ease: "easeOut" }}
+                                        >
+                                            <p className="text-white/80 text-sm md:text-base font-light italic border-l-2 border-red-500 pl-4 mb-4 line-clamp-3 md:line-clamp-none whitespace-normal">
+                                                {project.description}
+                                            </p>
+                                            <div className="flex flex-wrap gap-2">
+                                                {project.tech.map(t => (
+                                                    <span key={t} className="px-2 py-1 text-[10px] font-mono border border-white/30 text-white/90 bg-black/40 backdrop-blur-sm">
+                                                        {t}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                            {!project.isUpcoming && (
+                                                <div className="mt-6 flex items-center text-red-400 font-mono text-xs uppercase tracking-widest gap-2">
+                                                    <span className="w-8 h-[1px] bg-red-400"></span>
+                                                    Click to expand
+                                                </div>
+                                            )}
+                                        </motion.div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        );
+                    })}
+                </div>
             </div>
 
             {/* FULL SCREEN DETAILED PROJECT MODAL */}
@@ -229,7 +230,7 @@ const Projects = () => {
                             {/* Blueprint grid background */}
                             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808020_1px,transparent_1px),linear-gradient(to_bottom,#80808020_1px,transparent_1px)] bg-[size:20px_20px] sm:bg-[size:40px_40px] z-0 pointer-events-none" />
 
-                            <motion.div layoutId={`project-image-container-${activeIndex}`} className="w-full h-full relative z-10 border border-black shadow-lg overflow-hidden bg-white line-clamp-none">
+                            <motion.div layoutId={`project-image-container-${activeIndex}`} className="w-full h-full relative z-10 border border-black shadow-lg overflow-hidden bg-white line-clamp-none rounded-none">
                                 <motion.img
                                     layoutId={`project-image-${activeIndex}`}
                                     src={activeProject.image}
@@ -273,7 +274,7 @@ const Projects = () => {
                                     <div className="pt-8">
                                         <h3 className="text-2xl font-mono uppercase tracking-widest border-b-2 border-black pb-4 mb-8">Photo Gallery & CAD Views</h3>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                            {activeProject.gallery.map((photo, j) => (
+                                            {activeProject.gallery?.map((photo, j) => (
                                                 <div key={j} className="group relative border border-black p-2 bg-gray-50 overflow-hidden cursor-crosshair">
                                                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none z-10" />
                                                     <img src={photo} alt={`${activeProject.title} gallery ${j}`} className="w-full aspect-[4/3] object-cover filter transition-all duration-500 scale-100 group-hover:scale-105 group-hover:grayscale" />

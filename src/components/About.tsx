@@ -20,7 +20,7 @@ const About = () => {
                     whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className="relative p-6 sm:p-10 md:p-20 bg-white border border-black/10 shadow-[8px_8px_0px_rgba(0,0,0,0.03)] sm:shadow-[20px_20px_0px_rgba(0,0,0,0.03)] overflow-hidden"
+                    className="relative p-6 sm:p-10 md:p-20 bg-transparent overflow-hidden"
                 >
                     {/* Background Blueprint Grid */}
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none z-0" />

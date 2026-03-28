@@ -175,7 +175,7 @@ const Skills = () => {
         <section
             ref={containerRef}
             onMouseMove={handleMouseMove}
-            className="relative min-h-[250vh] bg-[#f8f6f1] overflow-hidden flex items-center justify-center py-0"
+            className="relative overflow-hidden py-0"
             id="skills"
         >
             <div className="absolute inset-0 pointer-events-none opacity-[0.04]">
@@ -190,7 +190,7 @@ const Skills = () => {
                 className="absolute inset-0 pointer-events-none"
             />
 
-            <div className="sticky top-0 h-screen w-full flex items-center justify-center pointer-events-none">
+            <div className="h-[80vh] sm:h-screen w-full flex items-center justify-center pointer-events-none sticky top-0 md:relative">
                 <div className="relative flex items-center justify-center w-full max-max-7xl h-full pointer-events-auto">
                     <MechanicalGear progress={scrollYProgress} />
 

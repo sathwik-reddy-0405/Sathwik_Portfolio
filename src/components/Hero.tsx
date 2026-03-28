@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring, useMotionTemplate, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useMotionTemplate, useTransform, animate } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 
 const Hero = () => {
@@ -6,6 +6,7 @@ const Hero = () => {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
     const [isHovered, setIsHovered] = useState(false);
+    const [autoReveal, setAutoReveal] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -14,6 +15,33 @@ const Hero = () => {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    useEffect(() => {
+        // The hero image has an entrance animation of delay: 2.0s + duration: 1.2s = 3.2s total.
+        // We trigger the automatic reveal slightly before it fully lands to make it fluid.
+        const timer = setTimeout(() => {
+            if (containerRef.current) {
+                const width = containerRef.current.offsetWidth;
+                const height = containerRef.current.offsetHeight;
+                
+                // Set the initial hover position to the top area (helmet)
+                mouseX.set(width * 0.5);
+                mouseY.set(height * 0.1);
+
+                // Sweep the mask straight down towards the chest/bottom
+                animate(mouseX, width * 0.5, { duration: 3.0, ease: "easeInOut" });
+                animate(mouseY, height * 0.7, { duration: 3.0, ease: "easeInOut" });
+            }
+            setAutoReveal(true);
+
+            // Hide after 3.0 seconds (shrinks radius back to 0 making it invisible)
+            setTimeout(() => {
+                setAutoReveal(false);
+            }, 3000);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, [mouseX, mouseY]);
 
     const handleMouseMove = (e: React.MouseEvent) => {
         if (!containerRef.current) return;
@@ -34,14 +62,17 @@ const Hero = () => {
     const springX3 = useSpring(mouseX, { stiffness: 40, damping: 25, mass: 1 });
     const springY3 = useSpring(mouseY, { stiffness: 40, damping: 25, mass: 1 });
 
+    // Combine manual hover and automatic reveal states
+    const activeReveal = isHovered || autoReveal;
+
     // Mask radii bounds
-    const maskRadius1 = useSpring(isHovered ? (isMobile ? 200 : 450) : 0, { stiffness: 90, damping: 18 });
+    const maskRadius1 = useSpring(activeReveal ? (isMobile ? 200 : 450) : 0, { stiffness: 90, damping: 18 });
     const maskRadiusOuter1 = useTransform(maskRadius1, r => r + 150);
 
-    const maskRadius2 = useSpring(isHovered ? (isMobile ? 160 : 380) : 0, { stiffness: 80, damping: 20 });
+    const maskRadius2 = useSpring(activeReveal ? (isMobile ? 160 : 380) : 0, { stiffness: 80, damping: 20 });
     const maskRadiusOuter2 = useTransform(maskRadius2, r => r + 120);
 
-    const maskRadius3 = useSpring(isHovered ? (isMobile ? 120 : 300) : 0, { stiffness: 70, damping: 22 });
+    const maskRadius3 = useSpring(activeReveal ? (isMobile ? 120 : 300) : 0, { stiffness: 70, damping: 22 });
     const maskRadiusOuter3 = useTransform(maskRadius3, r => r + 90);
 
     // Composite overlapping radial gradients to create a fluid blob shape
